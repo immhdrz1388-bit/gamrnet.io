@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>گیم نت VIP</title>
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet" type="text/css" />
+  <style>
+    body {
+       margin:0;
+  font-family:'Vazir',Tahoma,sans-serif;
+  direction:rtl;
+  background:#111;
+  color:#fff;
+  display:flex;
+  background-image: url("images/a.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative; /* برای کنترل overlay */
+
+}
+body::before {
+  content: "";
+  position: fixed; /* کل صفحه را بپوشاند */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* زیر محتوای اصلی قرار گیرد */
+}
+table tbody tr {
+  background: rgba(0,0,0,0.7); /* بک‌گراند نیمه‌شفاف تیره */
+}
+
+table tbody tr:nth-child(even) {
+  background: rgba(0,0,0,0.8); /* ردیف‌های زوج کمی تیره‌تر برای کنتراست بهتر */
+}
+
+table tbody tr:hover {
+  background: rgba(0,0,0,0.9); /* هنگام هاور روی ردیف، تیره‌تر شود */
+}
+
+    h2 {text-align:center;font-size:60px;}
+    .sidebar {width:200px;background:#222;display:flex;flex-direction:column;padding-top:20px;height:100vh;position:sticky;top:0;}
+    .sidebar a {color:#aaa;text-decoration:none;padding:12px 20px;transition:0.3s;}
+    .sidebar a:hover {background:#333;color:#0f0;}
+    .sidebar a.active {background:#333;color:#0f0;font-weight:bold;}
+    .main {flex-grow:1;padding:20px;}
+    .section {display:none;}
+    .section.active {display:block;}
+    table {width:100%;border-collapse:collapse;margin-top:20px;text-align:center;}
+    th,td {padding:10px;border:1px solid #444;}
+    thead {background:#222;}
+    .delete-btn,.add-btn {background:#444;color:#fff;border-radius:10px;padding:7px 15px;cursor:pointer;transition:0.3s;margin:5px;font-family:'Vazir',Tahoma,sans-serif;}
+    .delete-btn:hover {background:#f00;}
+    .add-btn:hover {background:#0f0;color:#000;}
+    select {font-family:'Vazir',Tahoma,sans-serif;padding:5px;background:#222;color:#fff;border:1px solid #444;}
+    .status-btn {border:none;padding:7px 15px;border-radius:8px;cursor:pointer;font-family:'Vazir',Tahoma,sans-serif;font-weight:bold;}
+    .start-btn {background:green;color:#fff;}
+    .end-btn {background:red;color:#fff;}
+    .target-minutes {width:70px;text-align:center;background:#222;color:#fff;border:1px solid #444;border-radius:5px;padding:5px;}
+    .target-minutes::-webkit-inner-spin-button,
+    .target-minutes::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    .target-minutes {
+     appearance: textfield; /* نسخه استاندارد */
+     -moz-appearance: textfield; /* برای Firefox */
+     -webkit-appearance: none; /* برای Chrome و Safari */
+    }
+    
+    .target-minutes::placeholder { font-family:'Vazir',Tahoma,sans-serif; color:#777; }
+  </style>
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>گیم نت VIP</title>
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet" type="text/css" />
+  <style>
+    body {
+      margin:0; font-family:'Vazir',Tahoma,sans-serif; direction:rtl; background:#111; color:#fff; display:flex;
+      background-image: url("images/a.png"); background-size: cover; background-position: center;
+      background-repeat: no-repeat; background-attachment: fixed; position: relative;
+    }
+    body::before { content:""; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:-1; }
+    table tbody tr { background: rgba(0,0,0,0.7); }
+    table tbody tr:nth-child(even) { background: rgba(0,0,0,0.8); }
+    table tbody tr:hover { background: rgba(0,0,0,0.9); }
+    h2 { text-align:center; font-size:60px; }
+    .sidebar { width:200px; background:#222; display:flex; flex-direction:column; padding-top:20px; height:100vh; position:sticky; top:0; }
+    .sidebar a { color:#aaa; text-decoration:none; padding:12px 20px; transition:0.3s; }
+    .sidebar a:hover { background:#333; color:#0f0; }
+    .sidebar a.active { background:#333; color:#0f0; font-weight:bold; }
+    .main { flex-grow:1; padding:20px; }
+    .section { display:none; }
+    .section.active { display:block; }
+    table { width:100%; border-collapse:collapse; margin-top:20px; text-align:center; }
+    th,td { padding:10px; border:1px solid #444; }
+    thead { background:#222; }
+    .delete-btn,.add-btn { background:#444; color:#fff; border-radius:10px; padding:7px 15px; cursor:pointer; transition:0.3s; margin:5px; font-family:'Vazir',Tahoma,sans-serif; }
+    .delete-btn:hover { background:#f00; }
+    .add-btn:hover { background:#0f0; color:#000; }
+    select { font-family:'Vazir',Tahoma,sans-serif; padding:5px; background:#222; color:#fff; border:1px solid #444; }
+    .status-btn { border:none; padding:7px 15px; border-radius:8px; cursor:pointer; font-family:'Vazir',Tahoma,sans-serif; font-weight:bold; }
+    .start-btn { background:green; color:#fff; }
+    .end-btn { background:red; color:#fff; }
+    .target-minutes { width:80px; text-align:center; background:#222; color:#fff; border:1px solid #444; border-radius:5px; padding:5px; }
+    .target-minutes::-webkit-inner-spin-button, .target-minutes::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
+    .target-minutes { appearance:textfield; -moz-appearance:textfield; -webkit-appearance:none; }
+    .target-minutes::placeholder { font-family:'Vazir',Tahoma,sans-serif; color:#777; }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <a href="index.html" data-section="systems" class="active" onclick="showSection('systems')">سیستم‌ها</a>
+  <a href="buffet.html" data-section="buffet" onclick="showSection('buffet')">بوفه</a>
+  <a href="accounts.html" data-section="accounts" onclick="showSection('accounts')">حساب‌های مشتری</a>
+</div>
+
+<div class="main">
+  <div id="systems" class="section active">
+    <h2>گیم‌نت VIP</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>حذف</th>
+          <th>دستگاه</th>
+          <th>تعداد دسته</th>
+          <th>وضعیت</th>
+          <th>مدت زمان هدف (دقیقه)</th>
+          <th>مدت زمان طی شده (mm:ss)</th>
+          <th>نرخ ساعتی</th>
+          <th>مبلغ</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button class="add-btn" onclick="addRow()">➕ افزودن دستگاه جدید</button>
+  </div>
+</div>
+
+<script>
+/* ---------- ناوبری ---------- */
+function showSection(sectionId){
+  document.querySelectorAll('.section').forEach(sec=>sec.classList.remove('active'));
+  document.getElementById(sectionId).classList.add('active');
+  document.querySelectorAll('.sidebar a').forEach(link=>link.classList.remove('active'));
+  document.querySelector('[data-section="'+sectionId+'"]').classList.add('active');
+}
+
+/* ---------- ابزار ---------- */
+function formatNumber(num){ return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+function msToMMSS(ms){
+  const m = Math.floor(ms / 60000);
+  const s = Math.floor((ms % 60000) / 1000);
+  return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+/* ---------- ذخیره‌سازی ---------- */
+const STORAGE_KEY = "systemsData_v2";
+
+function saveData(){
+  const rows = [];
+  document.querySelectorAll("#systems table tbody tr").forEach(row=>{
+    const device = row.querySelector('.device').value;
+    const controllers = row.querySelector('.controllers').value;
+    const targetMinutes = parseInt(row.querySelector('.target-minutes').value || "0");
+    const rateText = row.querySelector('.rate').innerText;
+    const amountText = row.querySelector('.amount').innerText;
+    const statusBtn = row.querySelector('.status-btn');
+    const status = statusBtn.dataset.status; // "running" | "stopped"
+    const elapsed = row.dataset.elapsed ? parseInt(row.dataset.elapsed) : 0;
+    const startTime = row.dataset.startTime ? parseInt(row.dataset.startTime) : null;
+    const hasAlerted = row.dataset.hasAlerted === "true";
+
+    rows.push({ device, controllers, targetMinutes, rateText, amountText, status, elapsed, startTime, hasAlerted });
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(rows));
+}
+
+function loadData(){
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  const tbody = document.querySelector("#systems table tbody");
+  tbody.innerHTML = "";
+  saved.forEach(data => addRow(data));
+}
+
+/* ---------- محاسبه مبلغ و نرخ ---------- */
+function computeRate(device, controllers){
+  if(device.startsWith("کنسول")){
+    return parseInt(controllers) * 40000;
+  } else {
+    return 50000;
+  }
+}
+
+function updateFinance(row, effectiveMs){
+  const device = row.querySelector('.device').value;
+  const controllers = row.querySelector('.controllers').value;
+  const rate = computeRate(device, controllers);
+  row.querySelector('.rate').innerText = formatNumber(rate) + " تومان";
+
+  // مبلغ بر اساس زمان هدف (اگر وارد شده) یا زمان واقعی
+  const targetVal = row.querySelector('.target-minutes').value;
+  let totalMinutes;
+  if(targetVal && !isNaN(targetVal) && parseInt(targetVal) > 0){
+    totalMinutes = parseInt(targetVal);
+  } else {
+    totalMinutes = Math.floor(effectiveMs / 60000) + (Math.floor((effectiveMs % 60000)/1000))/60;
+  }
+  const amount = Math.round((totalMinutes/60) * rate);
+  row.querySelector('.amount').innerText = formatNumber(amount) + " تومان";
+}
+
+/* ---------- تایمر پایدار ---------- */
+function startTimer(row){
+  // پاک‌سازی تایمر قبلی
+  if(row._interval){ clearInterval(row._interval); row._interval = null; }
+
+  // اگر در حال اجرا نیست، چیزی شروع نکن
+  const status = row.querySelector('.status-btn').dataset.status;
+  if(status !== "running"){ return; }
+
+  // اطمینان از وجود startTime
+  const now = Date.now();
+  if(!row.dataset.startTime){
+    row.dataset.startTime = String(now);
+  }
+
+  // به‌روزرسانی نمایش هر ثانیه
+  row._interval = setInterval(()=>{
+    const startTime = parseInt(row.dataset.startTime);
+    const baseElapsed = parseInt(row.dataset.elapsed || "0"); // زمانی که قبل از آخرین شروع جمع شده
+    let effectiveMs = baseElapsed + (Date.now() - startTime);
+
+    const targetMinutes = parseInt(row.querySelector('.target-minutes').value || "0");
+    const targetMs = isNaN(targetMinutes) ? 0 : targetMinutes * 60000;
+    const hasAlerted = row.dataset.hasAlerted === "true";
+
+    // رسیدن به هدف
+    if(targetMs > 0 && effectiveMs >= targetMs){
+      // تثبیت در هدف
+      effectiveMs = targetMs;
+      row.dataset.elapsed = String(targetMs);
+      row.dataset.startTime = ""; // پایان
+      row.dataset.hasAlerted = "true";
+      const btn = row.querySelector('.status-btn');
+      btn.dataset.status = "stopped";
+      btn.classList.remove('end-btn'); btn.classList.add('start-btn');
+      btn.innerText = "شروع";
+      clearInterval(row._interval); row._interval = null;
+
+      // نمایش و بوق یک‌بار
+      row.querySelector('.duration').innerText = msToMMSS(effectiveMs);
+      updateFinance(row, effectiveMs);
+      if(!hasAlerted) playBeep();
+
+      saveData();
+      return;
+    }
+
+    // نمایش و محاسبه
+    row.querySelector('.duration').innerText = msToMMSS(effectiveMs);
+    updateFinance(row, effectiveMs);
+  }, 1000);
+}
+
+function stopTimer(row){
+  if(row._interval){ clearInterval(row._interval); row._interval = null; }
+  const startTime = row.dataset.startTime ? parseInt(row.dataset.startTime) : null;
+  if(startTime){
+    const add = Date.now() - startTime;
+    const prev = parseInt(row.dataset.elapsed || "0");
+    row.dataset.elapsed = String(prev + add);
+  }
+  row.dataset.startTime = ""; // دیگر در حال اجرا نیست
+  saveData();
+}
+
+function playBeep(){
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const oscillator = audioCtx.createOscillator();
+  oscillator.type = "sine";
+  oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime);
+  oscillator.connect(audioCtx.destination);
+  oscillator.start();
+  oscillator.stop(audioCtx.currentTime + 1);
+}
+
+/* ---------- ردیف ---------- */
+function addRow(data = {}){
+  const tbody = document.querySelector("#systems table tbody");
+  const row = document.createElement("tr");
+
+  // ساخت HTML
+  row.innerHTML = `
+    <td><button class="delete-btn">🗑 حذف</button></td>
+    <td>
+      <select class="device">
+        <option ${data.device=="کنسول 1"?"selected":""}>کنسول 1</option>
+        <option ${data.device=="کنسول 2"?"selected":""}>کنسول 2</option>
+        <option ${data.device=="کنسول 3"?"selected":""}>کنسول 3</option>
+        <option ${data.device=="کنسول 4"?"selected":""}>کنسول 4</option>
+        <option ${data.device=="PC1"?"selected":""}>PC1</option>
+        <option ${data.device=="PC2"?"selected":""}>PC2</option>
+        <option ${data.device=="PC3"?"selected":""}>PC3</option>
+        <option ${data.device=="PC4"?"selected":""}>PC4</option>
+      </select>
+    </td>
+    <td>
+      <select class="controllers">
+        <option value="1" ${data.controllers=="1"?"selected":""}>1</option>
+        <option value="2" ${data.controllers=="2"?"selected":""}>2</option>
+        <option value="3" ${data.controllers=="3"?"selected":""}>3</option>
+        <option value="4" ${data.controllers=="4"?"selected":""}>4</option>
+      </select>
+    </td>
+    <td>
+      <button class="status-btn ${data.status==="running"?"end-btn":"start-btn"}"
+              data-status="${data.status || "stopped"}">${data.status==="running"?"پایان":"شروع"}</button>
+    </td>
+    <td><input type="number" class="target-minutes" placeholder="دقیقه" value="${data.targetMinutes ?? ""}" min="1"></td>
+    <td class="duration">00:00</td>
+    <td class="rate"></td>
+    <td class="amount"></td>
+  `;
+
+  // مقداردهی وضعیت‌های داخلی
+  row.dataset.elapsed = String(data.elapsed || 0);
+  row.dataset.startTime = data.startTime ? String(data.startTime) : "";
+  row.dataset.hasAlerted = data.hasAlerted ? "true" : "false";
+
+  tbody.appendChild(row);
+
+  // کنترل‌های رویداد
+  row.querySelector('.delete-btn').addEventListener('dblclick', ()=>{
+    if(row._interval){ clearInterval(row._interval); }
+    row.remove();
+    saveData();
+  });
+
+  row.querySelector('.device').addEventListener('change', ()=>{
+    // فعال/غیرفعال کردن انتخاب دسته‌ها
+    const device = row.querySelector('.device').value;
+    const controllersSelect = row.querySelector('.controllers');
+    if(device.startsWith("کنسول")) controllersSelect.disabled = false;
+    else controllersSelect.disabled = true;
+    // به‌روزرسانی مالی
+    const effectiveMs = getEffectiveMs(row);
+    updateFinance(row, effectiveMs);
+    saveData();
+  });
+
+  row.querySelector('.controllers').addEventListener('change', ()=>{
+    const effectiveMs = getEffectiveMs(row);
+    updateFinance(row, effectiveMs);
+    saveData();
+  });
+
+  row.querySelector('.target-minutes').addEventListener('input', ()=>{
+    // اگر هدف کمتر از زمان جاری است و در حال اجراست، اجازه بده شمارش ادامه دهد ولی مالی بر اساس هدف محاسبه شود
+    const effectiveMs = getEffectiveMs(row);
+    updateFinance(row, effectiveMs);
+    saveData();
+  });
+
+  const statusBtn = row.querySelector('.status-btn');
+  statusBtn.addEventListener('click', ()=>{
+    const current = statusBtn.dataset.status;
+    if(current === "stopped"){
+      // شروع
+      statusBtn.dataset.status = "running";
+      statusBtn.classList.remove('start-btn'); statusBtn.classList.add('end-btn');
+      statusBtn.innerText = "پایان";
+
+      // اگر قبلاً شروع بوده، از startTime قبلی استفاده می‌کنیم؛ در غیر این‌صورت اکنون
+      if(!row.dataset.startTime){ row.dataset.startTime = String(Date.now()); }
+      startTimer(row);
+      saveData();
+    } else {
+      // پایان
+      statusBtn.dataset.status = "stopped";
+      statusBtn.classList.remove('end-btn'); statusBtn.classList.add('start-btn');
+      statusBtn.innerText = "شروع";
+
+      stopTimer(row);
+      // نمایش نهایی و مالی
+      const effectiveMs = parseInt(row.dataset.elapsed || "0");
+      row.querySelector('.duration').innerText = msToMMSS(effectiveMs);
+      updateFinance(row, effectiveMs);
+      saveData();
+    }
+  });
+
+  // وضعیت اولیه UI و مالی
+  const device = row.querySelector('.device').value;
+  const controllersSelect = row.querySelector('.controllers');
+  controllersSelect.disabled = !device.startsWith("کنسول");
+
+  // محاسبه اولیه
+  const initialMs = getEffectiveMs(row);
+  row.querySelector('.duration').innerText = msToMMSS(initialMs);
+  updateFinance(row, initialMs);
+
+  // اگر در حال اجراست، تایمر را راه‌اندازی کن
+  if(statusBtn.dataset.status === "running"){
+    // اگر startTime ذخیره شده، ادامه بده؛ اگر نبود، الان تعیین کن
+    if(!row.dataset.startTime){ row.dataset.startTime = String(Date.now()); }
+    startTimer(row);
+  }
+}
+
+function getEffectiveMs(row){
+  const status = row.querySelector('.status-btn').dataset.status;
+  const baseElapsed = parseInt(row.dataset.elapsed || "0");
+  if(status === "running" && row.dataset.startTime){
+    const startTime = parseInt(row.dataset.startTime);
+    return baseElapsed + (Date.now() - startTime);
+  }
+  return baseElapsed;
+}
+
+/* ---------- بارگذاری اولیه ---------- */
+window.addEventListener('load', ()=>{
+  showSection('systems');
+  loadData();
+});
+
+/* ---------- ذخیره هنگام ترک صفحه (ایمن) ---------- */
+window.addEventListener('beforeunload', ()=>{
+  // به‌روزرسانی زمان‌های جاری قبل از ذخیره
+  document.querySelectorAll("#systems table tbody tr").forEach(row=>{
+    const status = row.querySelector('.status-btn').dataset.status;
+    if(status === "running" && row.dataset.startTime){
+      const startTime = parseInt(row.dataset.startTime);
+      const prev = parseInt(row.dataset.elapsed || "0");
+      const nowAdd = Date.now() - startTime;
+      // elapsed را به‌روز می‌کنیم، اما startTime را نگه می‌داریم تا بعداً ادامه دهد
+      row.dataset.elapsed = String(prev); // پایه را ثابت نگه می‌داریم
+      // نکته: چون شمارش خارج از صفحه ادامه دارد، نیاز نیست هر ثانیه ذخیره کنیم؛ روی load دوباره محاسبه می‌شود
+    }
+  });
+  saveData();
+});
+</script>
+
+</body>
+</html>

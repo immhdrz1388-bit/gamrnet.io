@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>بوفه</title>
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet" type="text/css" />
+  <style>
+    body {
+      margin:0;
+      font-family:'Vazir',Tahoma,sans-serif;
+      direction:rtl;
+      background:#111;
+      color:#fff;
+      display:flex;
+      background-image: url("images/a.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      position: relative;
+    }
+    body::before {
+      content:"";
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.6);
+      z-index:-1;
+    }
+    h2 { text-align:center; font-size:60px; }
+    .sidebar {
+      width:200px; background:#222;
+      display:flex; flex-direction:column;
+      padding-top:20px; height:100vh;
+      position:sticky; top:0;
+    }
+    .sidebar a {
+      color:#aaa; text-decoration:none;
+      padding:12px 20px; transition:0.3s;
+    }
+    .sidebar a:hover { background:#333; color:#0f0; }
+    .sidebar a.active { background:#333; color:#0f0; font-weight:bold; }
+    .main { flex-grow:1; padding:20px; }
+    .section { display:none; }
+    .section.active { display:block; }
+    table { width:100%; border-collapse:collapse; margin-top:20px; text-align:center; }
+    th,td { padding:10px; border:1px solid #444; }
+    thead { background:#222; }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <a href="index.html">سیستم‌ها</a>
+  <a href="buffet.html" class="active">بوفه</a>
+  <a href="accounts.html">حساب‌های مشتری</a>
+</div>
+
+<div class="main">
+  <div id="buffet" class="section active">
+    <h2>بوفه</h2>
+    <!-- محتوای این بخش خالی است -->
+  </div>
+</div>
+
+</body>
+</html>
