@@ -6,211 +6,117 @@
   <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet" type="text/css" />
   <style>
     body {
-      margin:0;
-      font-family:'Vazir',Tahoma,sans-serif;
-      direction:rtl;
-      background:#111;
-      color:#fff;
-      display:flex;
-      background-image: url("images/a.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      position: relative;
+      margin:0; font-family:'Vazir',Tahoma,sans-serif;
+      direction:rtl; background:#111; color:#fff; display:flex;
+      background-image:url("images/a.png");
+      background-size:cover; background-position:center;
+      background-repeat:no-repeat; background-attachment:fixed;
+      position:relative;
     }
-    body::before {
-      content:"";
-      position:fixed;
-      top:0; left:0;
-      width:100%; height:100%;
-      background:rgba(0,0,0,0.6);
-      z-index:-1;
-    }
-    h2 { text-align:center; font-size:60px; }
-    .sidebar {
-      width:200px; background:#222;
-      display:flex; flex-direction:column;
-      padding-top:20px; height:100vh;
-      position:sticky; top:0;
-    }
-    .sidebar a {
-      color:#aaa; text-decoration:none;
-      padding:12px 20px; transition:0.3s;
-    }
-    .sidebar a:hover { background:#333; color:#0f0; }
-    .sidebar a.active { background:#333; color:#0f0; font-weight:bold; }
-    .main { flex-grow:1; padding:20px; }
-    .section { display:none; }
-    .section.active { display:block; }
-    table { width:100%; border-collapse:collapse; margin-top:20px; text-align:center; }
-    th,td { padding:10px; border:1px solid #444; }
-    thead { background:#222; }
-     /* محتوای اصلی */
-    .main { flex-grow:1; padding:20px; }
-    .section { display:none; }
-    .section.active { display:block; }
+    body::before { content:""; position:fixed; inset:0;
+      background:rgba(0,0,0,0.6); z-index:-1; }
     h2 { text-align:center; font-size:36px; margin:10px 0 15px; }
 
-    /* نوار بالا: دکمه راست + سرچ وسط */
-    .top-bar {
-      display:flex;
-      align-items:center;
-      gap:16px;
-      margin:10px 0 20px;
-    }
-    .top-bar .spacer {
-      flex:1;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
+    .sidebar { width:200px; background:#222; display:flex; flex-direction:column;
+      padding-top:20px; height:100vh; position:sticky; top:0; }
+    .sidebar a { color:#aaa; text-decoration:none; padding:12px 20px; transition:0.3s; font-family:'Vazir',Tahoma,sans-serif; }
+    .sidebar a:hover { background:#333; color:#0f0; }
+    .sidebar a.active { background:#333; color:#0f0; font-weight:bold; }
+
+    .main { flex-grow:1; padding:20px; }
+    .section { display:none; }
+    .section.active { display:block; }
+
+    .top-bar { display:flex; align-items:center; gap:16px; margin:10px 0 20px; }
+    .top-bar .spacer { flex:1; display:flex; justify-content:center; align-items:center; }
     .add-btn {
-      margin-right:auto; /* دکمه برود سمت راست */
-      background:#0f0;
-      color:#111;
-      border:none;
-      padding:10px 16px;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:bold;
-      font-family:'Vazir', Tahoma, sans-serif;
+      margin-right:auto; background:#0f0; color:#111; border:none;
+      padding:10px 16px; border-radius:8px; cursor:pointer;
+      font-weight:bold; font-family:'Vazir',Tahoma,sans-serif;
       box-shadow:0 0 12px rgba(0,255,0,0.35);
-      transition:transform 0.15s ease, background 0.2s ease;
     }
     .add-btn:hover { background:#0c0; transform:translateY(-1px); }
 
-    .search-box {
-      width:100%;
-      max-width:420px;
-    }
+    .search-box { width:100%; max-width:420px; }
     .search-input {
-      width:100%;
-      padding:12px 14px;
-      border-radius:10px;
-      border:1px solid #333;
-      background:#1a1a1a;
-      color:#eee;
-      text-align:center;
-      font-family:'Vazir', Tahoma, sans-serif;
-      box-shadow:inset 0 0 10px rgba(0,0,0,0.35);
-      transition:border-color 0.2s ease, box-shadow 0.2s ease;
+      width:100%; padding:12px 14px; border-radius:10px; border:1px solid #333;
+      background:#1a1a1a; color:#eee; text-align:center;
+      font-family:'Vazir',Tahoma,sans-serif;
     }
-    .search-input:focus {
-      outline:none;
-      border-color:#0f0;
-      box-shadow:0 0 12px rgba(0,255,0,0.35), inset 0 0 10px rgba(0,0,0,0.4);
-    }
+    .search-input:focus { outline:none; border-color:#0f0; }
 
-    /* فرم پاپ‌آپ افزودن مشتری */
-    .overlay {
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.55);
-      z-index:998;
-    }
+    .overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:998; }
     .form-container {
-      display:none;
-      position:fixed;
-      top:50%; left:50%;
-      transform:translate(-50%,-50%);
-      background:#222;
-      padding:20px;
-      border-radius:12px;
-      box-shadow:0 0 24px rgba(0,255,0,0.5);
-      z-index:999;
-      width:92%;
-      max-width:460px;
+      display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+      background:#222; padding:20px; border-radius:12px;
+      box-shadow:0 0 24px rgba(0,255,0,0.5); z-index:999;
+      width:92%; max-width:460px;
     }
-    .form-container h3 {
-      margin:0 0 12px;
-      font-size:18px;
-      color:#0f0;
-      text-align:center;
-    }
+    .form-container h3 { margin:0 0 12px; font-size:18px; color:#0f0; text-align:center; font-family:'Vazir',Tahoma,sans-serif; }
     .form-field { margin-bottom:10px; }
     .form-field input {
-      width:95%;
-      padding:10px 12px;
-      border-radius:8px;
-      border:1px solid #333;
-      background:#1a1a1a;
-      color:#eee;
-      font-family:'Vazir', Tahoma, sans-serif;
+      width:95%; padding:10px 12px; border-radius:8px; border:1px solid #333;
+      background:#1a1a1a; color:#eee; font-family:'Vazir',Tahoma,sans-serif;
     }
-    .form-actions {
-      display:flex;
-      gap:10px;
-      margin-top:10px;
-    }
-    .btn {
-      flex:1;
-      padding:10px 14px;
-      border:none;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:bold;
-      font-family:'Vazir', Tahoma, sans-serif;
-    }
+    .form-actions { display:flex; gap:10px; margin-top:10px; }
+    .btn { flex:1; padding:10px 14px; border:none; border-radius:8px; cursor:pointer;
+      font-weight:bold; font-family:'Vazir',Tahoma,sans-serif; }
     .btn-primary { background:#0f0; color:#111; }
-    .btn-primary:hover { background:#0c0; }
     .btn-secondary { background:#444; color:#eee; }
-    .btn-secondary:hover { background:#555; }
 
-    /* کارت‌ها: ۵ تا در هر ردیف */
-    .cards-container {
-      display:grid;
-      grid-template-columns:repeat(5, 1fr);
-      gap:15px;
-      margin-top:20px;
-    }
-    .card {
-      background:#222;
-      border:1px solid #444;
-      border-radius:10px;
-      overflow:hidden;
-      box-shadow:0 0 10px rgba(0,255,0,0.25);
-      transition:transform 0.15s ease, box-shadow 0.2s ease;
-      text-align:center;
-      font-family:'Vazir', Tahoma, sans-serif;
-    }
-    .card:hover { transform:translateY(-2px); box-shadow:0 0 18px rgba(0,255,0,0.45); }
-    .card img {
-      width:100%;
-      height:100px;
-      object-fit:contain; /* تصویر کامل بدون برش */
-      background:#000;
-    }
+    .cards-container { display:grid; grid-template-columns:repeat(5,1fr); gap:15px; margin-top:20px; }
+    .card { background:#222; border:1px solid #444; border-radius:10px; overflow:hidden;
+      box-shadow:0 0 10px rgba(0,255,0,0.25); text-align:center; font-family:'Vazir',Tahoma,sans-serif; }
+    .card img { width:100%; height:100px; object-fit:contain; background:#000; }
     .card-info { padding:10px; }
     .card-info h3 { margin:6px 0 8px; font-size:14px; color:#0f0; }
     .card-info p { margin:4px 0; font-size:12px; color:#ddd; }
+    .card-actions { display:flex; gap:8px; justify-content:center; margin-top:6px; }
+    .invoice-btn { background:#0f0; color:#111; padding:6px 10px; border:none; border-radius:8px; font-size:12px; font-family:'Vazir',Tahoma,sans-serif; }
+    .delete-btn { background:#f00; color:#fff; padding:6px 10px; border:none; border-radius:8px; font-size:12px; font-family:'Vazir',Tahoma,sans-serif; }
 
-    .card-actions {
-      display:flex;
-      gap:8px;
-      justify-content:center;
-      margin-top:6px;
-    }
-    .invoice-btn, .delete-btn {
-      padding:6px 10px;
-      border:none;
-      border-radius:8px;
-      cursor:pointer;
-      font-family:'Vazir', Tahoma, sans-serif;
-      font-weight:bold;
-      font-size:12px;
-    }
-    .invoice-btn { background:#0f0; color:#111; }
-    .invoice-btn:hover { background:#0c0; }
-    .delete-btn { background:#f00; color:#fff; }
-    .delete-btn:hover { background:#d00; }
+    @media (max-width:1200px){ .cards-container{ grid-template-columns:repeat(4,1fr);} }
+    @media (max-width:900px){ .cards-container{ grid-template-columns:repeat(3,1fr);} }
+    @media (max-width:600px){ .cards-container{ grid-template-columns:repeat(2,1fr);} }
+    @media (max-width:420px){ .cards-container{ grid-template-columns:repeat(1,1fr);} }
 
-    /* واکنش‌گرا مختصر */
-    @media (max-width:1200px) { .cards-container { grid-template-columns:repeat(4, 1fr); } }
-    @media (max-width:900px)  { .cards-container { grid-template-columns:repeat(3, 1fr); } }
-    @media (max-width:600px)  { .cards-container { grid-template-columns:repeat(2, 1fr); } }
-    @media (max-width:420px)  { .cards-container { grid-template-columns:repeat(1, 1fr); } }
+    .invoice-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:998; }
+    .invoice-popup {
+      display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+      background:#222; color:#eee; padding:20px; border-radius:12px;
+      width:95%; max-width:700px; z-index:999; box-shadow:0 0 20px rgba(0,255,0,0.5);
+      font-family:'Vazir',Tahoma,sans-serif;
+    }
+    .invoice-header { display:flex; justify-content:space-between; margin-bottom:10px; font-weight:bold; color:#0f0; }
+    .invoice-popup table { width:100%; border-collapse:collapse; margin-top:10px; }
+    .invoice-popup th, .invoice-popup td { border:1px solid #444; padding:6px; text-align:center; font-family:'Vazir',Tahoma,sans-serif; }
+    .invoice-actions { margin-top:10px; display:flex; gap:10px; justify-content:flex-end; }
+    .debt { color:red; font-weight:bold; }
+
+    .btn-yellow { background:#ff0; color:#111; box-shadow:0 0 10px rgba(255,255,0,0.4); font-family:'Vazir',Tahoma,sans-serif; }
+    .btn-green { background:#0f0; color:#111; font-size:16px; padding:12px 18px; box-shadow:0 0 10px rgba(0,255,0,0.4); font-family:'Vazir',Tahoma,sans-serif; }
+    .invoice-popup input {
+      width: 90%;          /* کمی کوچکتر از عرض سلول */
+      padding: 6px;        /* پدینگ کمتر */
+      font-size: 12px;     /* فونت کوچکتر */
+      border-radius: 6px;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #eee;
+      font-family: 'Vazir', Tahoma, sans-serif;
+      box-sizing: border-box; /* مطمئن میشه از سلول بیرون نزنه */
+    }
+    /* حذف فلش‌های بالا/پایین در فیلدهای عددی */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  appearance: none; /* نسخه استاندارد */
+  -webkit-appearance: none;
+  -moz-appearance: textfield; /* برای فایرفاکس */
+}
 
   </style>
 </head>
@@ -221,167 +127,215 @@
   <a href="buffet.html">بوفه</a>
   <a href="accounts.html" class="active">حساب‌های مشتری</a>
 </div>
-  <!-- محتوا -->
-  <div class="main">
-    <div id="accounts" class="section active">
-      <h2>حساب‌های مشتری</h2>
 
-      <div class="top-bar">
-        <button class="add-btn" id="addBtn">افزودن مشتری جدید</button>
-        <div class="spacer">
-          <div class="search-box">
-            <input type="text" id="searchInput" class="search-input" placeholder="جستجو بر اساس نام مشتری..." />
-                   </div>
+<div class="main">
+  <div id="accounts" class="section active">
+    <h2>حساب‌های مشتری</h2>
+    <div class="top-bar">
+      <button class="add-btn" id="addBtn">افزودن مشتری جدید</button>
+      <div class="spacer">
+        <div class="search-box">
+          <input type="text" id="searchInput" class="search-input" placeholder="جستجو بر اساس نام مشتری..." />
         </div>
       </div>
-
-      <div class="cards-container" id="cardsContainer">
-        <!-- کارت‌ها به صورت داینامیک افزوده می‌شوند -->
-      </div>
     </div>
+    <div class="cards-container" id="cardsContainer"></div>
   </div>
+</div>
 
-  <!-- اورلی و فرم -->
-  <div class="overlay" id="overlay"></div>
-  <div class="form-container" id="formContainer">
-    <h3>افزودن مشتری جدید</h3>
-    <div class="form-field">
-      <input type="text" id="nameInput" placeholder="نام و نام خانوادگی" />
-    </div>
-    <div class="form-field">
-      <input type="text" id="phoneInput" placeholder="شماره تلفن" />
-    </div>
-    <div class="form-actions">
-      <button class="btn btn-secondary" id="cancelBtn">انصراف</button>
-      <button class="btn btn-primary" id="submitBtn">ثبت</button>
-    </div>
+<!-- فرم افزودن مشتری -->
+<div class="overlay" id="overlay"></div>
+<div class="form-container" id="formContainer">
+  <h3>افزودن مشتری جدید</h3>
+  <div class="form-field">
+    <input type="text" id="nameInput" placeholder="نام و نام خانوادگی" />
   </div>
+  <div class="form-field">
+    <input type="text" id="phoneInput" placeholder="شماره تلفن" />
+  </div>
+  <div class="form-actions">
+    <button class="btn btn-secondary" id="cancelBtn">انصراف</button>
+    <button class="btn btn-primary" id="submitBtn">ثبت</button>
+  </div>
+</div>
 
-  <script>
-    // حالت اپ
-    let customers = [];
-    const STORAGE_KEY = 'customers';
+<!-- پنجره صورتحساب -->
+<div class="invoice-overlay" id="invoiceOverlay"></div>
+<div class="invoice-popup" id="invoicePopup">
+  <div class="invoice-header">
+    <span id="invoiceName" class="invoice-name"></span>
+    <span id="invoicePhone" class="invoice-phone"></span>
+  </div>
+  <table id="invoiceTable">
+    <thead>
+      <tr>
+        <th>ردیف</th>
+        <th>تاریخ</th>
+        <th>شرح</th>
+        <th>مبلغ</th>
+        <th>دریافتی</th>
+        <th>مانده</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div class="invoice-actions">
+    <button id="addRowBtn" class="btn btn-yellow">➕ افزودن ردیف</button>
+    <button id="closeInvoiceBtn" class="btn btn-green">بستن</button>
+  </div>
+</div>
 
-    // المان‌ها
-    const addBtn        = document.getElementById('addBtn');
-    const overlay       = document.getElementById('overlay');
-    const formContainer = document.getElementById('formContainer');
-    const nameInput     = document.getElementById('nameInput');
-    const phoneInput    = document.getElementById('phoneInput');
-    const cancelBtn     = document.getElementById('cancelBtn');
-    const submitBtn     = document.getElementById('submitBtn');
-    const cardsContainer= document.getElementById('cardsContainer');
-    const searchInput   = document.getElementById('searchInput');
+<script>
+  let customers = [];
+  const STORAGE_KEY = 'customers';
 
-    // ذخیره/بارگذاری ایمن از LocalStorage
-    function loadCustomers(){
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        customers = raw ? JSON.parse(raw) : [];
-        if (!Array.isArray(customers)) customers = [];
-      } catch(e){
-        customers = [];
-      }
-    }
-    function saveCustomers(){
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(customers));
-    }
+  const addBtn        = document.getElementById('addBtn');
+  const overlay       = document.getElementById('overlay');
+  const formContainer = document.getElementById('formContainer');
+  const nameInput     = document.getElementById('nameInput');
+  const phoneInput    = document.getElementById('phoneInput');
+  const cancelBtn     = document.getElementById('cancelBtn');
+  const submitBtn     = document.getElementById('submitBtn');
+  const cardsContainer= document.getElementById('cardsContainer');
+  const searchInput   = document.getElementById('searchInput');
 
-    // نمایش فرم
-    function openForm(){
-      overlay.style.display = 'block';
-      formContainer.style.display = 'block';
-      nameInput.value = '';
-      phoneInput.value = '';
-      nameInput.focus();
-    }
-    function closeForm(){
-      overlay.style.display = 'none';
-      formContainer.style.display = 'none';
-    }
+  function loadCustomers(){
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      customers = raw ? JSON.parse(raw) : [];
+      if (!Array.isArray(customers)) customers = [];
+    } catch(e){ customers = []; }
+  }
+  function saveCustomers(){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(customers));
+  }
 
-    // ساخت کارت
-    function createCardHTML(cust){
-      return `
-        <div class="card" data-id="${cust.id}">
-          <img src="images/b.jpg" alt="تصویر مشتری" />
-          <div class="card-info">
-            <h3>${cust.name}</h3>
-            ${cust.phone ? `<p>📞 ${cust.phone}</p>` : ''}
-            <p>💰 بدهی: 0 تومان</p>
-            <div class="card-actions">
-              <button class="invoice-btn" data-action="invoice" data-id="${cust.id}">صورتحساب</button>
-              <button class="delete-btn" data-action="delete" data-id="${cust.id}">حذف</button>
-            </div>
+  function openForm(){
+    overlay.style.display = 'block';
+    formContainer.style.display = 'block';
+    nameInput.value = ''; phoneInput.value = '';
+    nameInput.focus();
+  }
+  function closeForm(){
+    overlay.style.display = 'none';
+    formContainer.style.display = 'none';
+  }
+
+  function formatNumber(num){
+    return Number(num).toLocaleString('fa-IR');
+  }
+
+  function createCardHTML(cust){
+    return `
+      <div class="card" data-id="${cust.id}">
+        <img src="images/b.jpg" alt="تصویر مشتری" />
+        <div class="card-info">
+          <h3>${cust.name}</h3>
+          ${cust.phone ? `<p>📞 ${cust.phone}</p>` : ''}
+          <p>💰 بدهی: ${formatNumber(cust.debt || 0)} تومان</p>
+          <div class="card-actions">
+            <button class="invoice-btn" data-action="invoice" data-id="${cust.id}">صورتحساب</button>
+            <button class="delete-btn" data-action="delete" data-id="${cust.id}">حذف</button>
           </div>
         </div>
-      `;
-    }
+      </div>
+    `;
+  }
 
-    // رندر با فیلتر اختیاری
-    function renderCustomers(filter = ''){
-      const q = filter.trim().toLowerCase();
-      const list = q ? customers.filter(c => c.name.toLowerCase().includes(q)) : customers;
-      cardsContainer.innerHTML = list.map(createCardHTML).join('');
-    }
+  function renderCustomers(filter = ''){
+    const q = filter.trim().toLowerCase();
+    const list = q ? customers.filter(c => c.name.toLowerCase().includes(q) || (c.phone||'').includes(q)) : customers;
+    cardsContainer.innerHTML = list.map(createCardHTML).join('');
+  }
 
-    // افزودن مشتری جدید
-    function addCustomer(){
-      const name = nameInput.value.trim();
-      const phone = phoneInput.value.trim();
-      if (!name){
-        alert('لطفاً نام و نام خانوادگی را وارد کنید');
-        nameInput.focus();
-        return;
-      }
-      const id = Date.now(); // شناسه یکتا
-      customers.push({ id, name, phone });
-      saveCustomers();
-      closeForm();
-      renderCustomers(searchInput.value);
-    }
+  function addCustomer(){
+    const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
+    if (!name){ alert('نام را وارد کنید'); return; }
+    const id = Date.now();
+    customers.push({ id, name, phone, debt: 0 });
+    saveCustomers(); closeForm(); renderCustomers(searchInput.value);
+  }
 
-    // حذف با دوبار کلیک
-    function handleDelete(id){
-      customers = customers.filter(c => c.id !== id);
-      saveCustomers();
-      renderCustomers(searchInput.value);
-    }
+  function handleDelete(id){
+    customers = customers.filter(c => c.id !== id);
+    saveCustomers(); renderCustomers(searchInput.value);
+  }
 
-    // رویدادها
-    addBtn.addEventListener('click', openForm);
-    cancelBtn.addEventListener('click', closeForm);
-    overlay.addEventListener('click', closeForm);
-    submitBtn.addEventListener('click', addCustomer);
+  let currentCustomer = null;
+  const invoiceOverlay = document.getElementById('invoiceOverlay');
+  const invoicePopup   = document.getElementById('invoicePopup');
+  const invoiceName    = document.getElementById('invoiceName');
+  const invoicePhone   = document.getElementById('invoicePhone');
+  const invoiceTable   = document.getElementById('invoiceTable').querySelector('tbody');
+  const addRowBtn      = document.getElementById('addRowBtn');
+  const closeInvoiceBtn= document.getElementById('closeInvoiceBtn');
 
-    // دلیگیشن برای دکمه‌های کارت
-    cardsContainer.addEventListener('dblclick', function(e){
-      const btn = e.target.closest('button');
-      if (!btn) return;
-      const action = btn.getAttribute('data-action');
-      const id = Number(btn.getAttribute('data-id'));
-      if (action === 'delete'){
-        handleDelete(id);
-      }
+  function openInvoice(cust){
+    currentCustomer = cust;
+    invoiceName.textContent = cust.name;
+    invoicePhone.textContent = cust.phone || '';
+    invoiceOverlay.style.display = 'block';
+    invoicePopup.style.display = 'block';
+    invoiceTable.innerHTML = '';
+    addRow();
+  }
+  function closeInvoice(){
+    invoiceOverlay.style.display = 'none';
+    invoicePopup.style.display = 'none';
+  }
+  function addRow(){
+    const rowIndex = invoiceTable.children.length + 1;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${rowIndex}</td>
+      <td><input type="text" placeholder="تاریخ" /></td>
+      <td><input type="text" placeholder="شرح" /></td>
+      <td><input type="number" class="amount" placeholder="مبلغ" /></td>
+      <td><input type="number" class="receive" placeholder="دریافتی" /></td>
+      <td class="balance">0</td>
+    `;
+    invoiceTable.appendChild(tr);
+    tr.querySelector('.amount').addEventListener('input', updateBalances);
+    tr.querySelector('.receive').addEventListener('input', updateBalances);
+  }
+  function updateBalances(){
+    let balance = currentCustomer.debt || 0;
+    const rows = invoiceTable.querySelectorAll('tr');
+    rows.forEach(tr=>{
+      const amount = Number(tr.querySelector('.amount').value) || 0;
+      const receive = Number(tr.querySelector('.receive').value) || 0;
+      balance += amount;
+      balance -= receive;
+      const balanceCell = tr.querySelector('.balance');
+      balanceCell.textContent = formatNumber(balance);
+      if(balance < 0){ balanceCell.classList.add('debt'); }
+      else { balanceCell.classList.remove('debt'); }
     });
-    cardsContainer.addEventListener('click', function(e){
-      const btn = e.target.closest('button');
-      if (!btn) return;
-      const action = btn.getAttribute('data-action');
-      const id = Number(btn.getAttribute('data-id'));
-      if (action === 'invoice'){
-        // فعلاً خالی — بعداً عملکرد صورتحساب را اضافه می‌کنیم
-      }
-    });
+  }
+  
 
-    // سرچ زنده
-    searchInput.addEventListener('input', () => {
-      renderCustomers(searchInput.value);
-    });
+  addRowBtn.addEventListener('click', addRow);
+  closeInvoiceBtn.addEventListener('click', closeInvoice);
+  invoiceOverlay.addEventListener('click', closeInvoice);
 
-    // شروع
-    loadCustomers();
-    renderCustomers();
-  </script>
+  addBtn.addEventListener('click', openForm);
+  cancelBtn.addEventListener('click', closeForm);
+  overlay.addEventListener('click', closeForm);
+  submitBtn.addEventListener('click', addCustomer);
+
+  cardsContainer.addEventListener('click', function(e){
+    const btn = e.target.closest('button'); if(!btn) return;
+    const action = btn.getAttribute('data-action');
+    const id = Number(btn.getAttribute('data-id'));
+    if(action === 'delete'){ if(confirm("حذف شود؟")) handleDelete(id); }
+    if(action === 'invoice'){ const cust = customers.find(c=>c.id===id); if(cust) openInvoice(cust); }
+  });
+
+  searchInput.addEventListener('input', ()=>renderCustomers(searchInput.value));
+
+  loadCustomers(); renderCustomers();
+  
+</script>
 </body>
 </html>
